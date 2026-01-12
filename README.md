@@ -2,7 +2,7 @@
 
 ---
 
-## 📌 Overview
+## Overview
 
 This project implements a **personalized, explainable trip planning system** that combines:
 
@@ -17,16 +17,16 @@ Unlike simple chatbot planners, this system **separates reasoning, recommendatio
 
 ## Highlights
 
-* 🔗 **Hybrid AI System**: LLM agents + ML models working together
-* 🤖 **Multi-Agent Architecture**: Specialized agents for planning, filtering, and optimization
-* 📊 **Explainable AI**: SHAP-based explanations for ML-driven recommendations
-* 🧠 **Personalization**: Uses user profiles and historical behavior
-* 🗂️ **Custom Datasets**: Self-curated POIs + synthetic & Kaggle-based user data
-* 🖥️ **Interactive UI**: Streamlit dashboard with analytics and explanations
+*  **Hybrid AI System**: LLM agents + ML models working together
+*  **Multi-Agent Architecture**: Specialized agents for planning, filtering, and optimization
+*  **Explainable AI**: SHAP-based explanations for ML-driven recommendations
+*  **Personalization**: Uses user profiles and historical behavior
+*  **Custom Datasets**: Self-curated POIs + synthetic & Kaggle-based user data
+*  **Interactive UI**: Streamlit dashboard with analytics and explanations
 
 ---
 
-## 🧠 System Architecture
+## System Architecture
 
 ```text
 User Input
@@ -44,7 +44,7 @@ Streamlit UI + Analytics Dashboard
 
 ---
 
-## 🧩 Core Components
+## Core Components
 
 ### 1. Agentic AI (LLM Layer)
 
@@ -77,9 +77,9 @@ Streamlit UI + Analytics Dashboard
 
 ---
 
-## 📁 Datasets Used
+## Datasets Used
 
-### 🔹 Points of Interest (POIs)
+###  Points of Interest (POIs)
 
 * **Custom-built dataset**
 * Curated manually and programmatically
@@ -91,12 +91,12 @@ Streamlit UI + Analytics Dashboard
   * Popularity
   * Activity type
 
-### 🔹 Users Dataset
+###  Users Dataset
 
 * **Kaggle-based + synthetic data**
 * User demographics, budgets, preferences
 
-### 🔹 User History
+###  User History
 
 * Generated using Python (fake but realistic values)
 * Past trips, interactions, and feedback
@@ -139,9 +139,9 @@ agentic_trip_planner/
 
 ---
 
-## ⚙️ Installation & Setup
+##  Installation & Setup
 
-### 1️⃣ Create Virtual Environment
+### Create Virtual Environment
 
 ```bash
 python -m venv venv
@@ -163,7 +163,7 @@ source venv/bin/activate
 
 ---
 
-### 2️⃣ Install Dependencies
+###  Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -195,7 +195,7 @@ python main.py
 
 ---
 
-## 📊 Analytics & Dashboard
+## Analytics & Dashboard
 
 The Streamlit UI provides:
 
@@ -207,22 +207,13 @@ The Streamlit UI provides:
 
 ---
 
-## 🧪 Research & Novelty
+## Research & Novelty
 
 ### Why this project is novel:
 
 * Combines **agentic LLM reasoning with classical ML**
 * Adds **explainability** to recommender systems
 * Uses **synthetic + real-world datasets** responsibly
-* Modular design suitable for **conference or journal publication**
-
-### Suitable For:
-
-* Pattern Recognition / ML coursework
-* Agentic AI research
-* Explainable AI studies
-* Recommender systems research
-
 ---
 
 Future Enhancements
