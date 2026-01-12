@@ -1,81 +1,26 @@
-from crewai import Crew
-from textwrap import dedent
-from trip_agents import TripAgents
-from trip_tasks import TripTasks
+from crewai import Crew, Process
+from trip_agents.trip_agents import planner_agent, scoring_agent, optimizer_agent
+from trip_agents.trip_tasks import planner_task, scoring_task, optimizer_task
+from trip_agents.agent_utils import (
+    classify_user_destination,
+    get_ranked_pois,
+    generate_itinerary
+)
 
-from dotenv import load_dotenv
-load_dotenv()
-
-class TripCrew:
-
-  def __init__(self, origin, cities, date_range, interests):
-    self.cities = cities
-    self.origin = origin
-    self.interests = interests
-    self.date_range = date_range
-
-  def run(self):
-    agents = TripAgents()
-    tasks = TripTasks()
-
-    city_selector_agent = agents.city_selection_agent()
-    local_expert_agent = agents.local_expert()
-    travel_concierge_agent = agents.travel_concierge()
-
-    identify_task = tasks.identify_task(
-      city_selector_agent,
-      self.origin,
-      self.cities,
-      self.interests,
-      self.date_range
-    )
-    gather_task = tasks.gather_task(
-      local_expert_agent,
-      self.origin,
-      self.interests,
-      self.date_range
-    )
-    plan_task = tasks.plan_task(
-      travel_concierge_agent, 
-      self.origin,
-      self.interests,
-      self.date_range
-    )
+def main(user_id: int):
+    print(f"Running Trip Planning Crew for User {user_id}...")
 
     crew = Crew(
-      agents=[
-        city_selector_agent, local_expert_agent, travel_concierge_agent
-      ],
-      tasks=[identify_task, gather_task, plan_task],
-      verbose=True
+        agents=[planner_agent, scoring_agent, optimizer_agent],
+        tasks=[planner_task, scoring_task, optimizer_task],
+        process=Process.sequential,
+        verbose=True
     )
 
-    result = crew.kickoff()
-    return result
+    result = crew.kickoff(inputs={"user_id": user_id})
+
+    print("\nFinal Output:\n")
+    print(result)
 
 if __name__ == "__main__":
-  print("## Welcome to Trip Planner Crew")
-  print('-------------------------------')
-  location = input(
-    dedent("""
-      From where will you be traveling from?
-    """))
-  cities = input(
-    dedent("""
-      What are the cities options you are interested in visiting?
-    """))
-  date_range = input(
-    dedent("""
-      What is the date range you are interested in traveling?
-    """))
-  interests = input(
-    dedent("""
-      What are some of your high level interests and hobbies?
-    """))
-  
-  trip_crew = TripCrew(location, cities, date_range, interests)
-  result = trip_crew.run()
-  print("\n\n########################")
-  print("## Here is you Trip Plan")
-  print("########################\n")
-  print(result)
+    main(user_id=1)
